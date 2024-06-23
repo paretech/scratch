@@ -10,20 +10,20 @@ log.addHandler(logging.NullHandler())
 
 class SharedCounter():
     def __init__(self):
-        self.logger.info(f'Creating {self.__class__.__name__}')
+        print(f'Creating {self.__class__.__name__} from PID={os.getpid()}')
         self.reset()
 
     def increment(self):
-        self.logger.info(f'Incrementing')
+        print(f'Incrementing from PID={os.getpid()}')
         self._counter += 1
 
     def reset(self):
-        self.logger.info(f'Reset')
+        print(f'Reset from PID={os.getpid()}')
         self._counter = 0
     
     @property
     def count(self):
-        self.logger.info(f'Get count')
+        print(f'Get count from PID={os.getpid()}')
         return self._counter
 
 class MyManager(multiprocessing.managers.BaseManager):
